@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="CheckinApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="checkin-backend" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.checkin.CheckinApplication" />
+    <!-- 关键：工作目录必须是 backend 模块目录，否则 ./data/checkin 会落到工程根目录，读到另一个空库 -->
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
+    <option name="VM_PARAMETERS" value="" />
+    <option name="PROGRAM_PARAMETERS" value="" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

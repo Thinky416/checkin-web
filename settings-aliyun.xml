@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Maven 阿里云镜像（可选，但强烈建议）。
+
+  实测本机从官方 central 拉包约 230KB/s，阿里云镜像约 2.4MB/s，差 10 倍。
+  两种用法：
+    1) 只在命令行用：mvn -s settings-aliyun.xml clean package
+    2) 让 IDEA 也用：Settings → Build, Execution, Deployment → Build Tools → Maven
+       → User settings file 选这个文件（不要勾 Override 到 ~/.m2/settings.xml）
+
+  想全局生效的话，把这段 <mirrors> 合并进 %USERPROFILE%\.m2\settings.xml 即可。
+-->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <mirrors>
+    <mirror>
+      <id>aliyun-public</id>
+      <name>Aliyun Maven Public</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>
+</settings>

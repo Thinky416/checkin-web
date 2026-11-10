@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: checkin-backend
+
+  # H2 文件库：数据落在【当前工作目录】下的 data/checkin.mv.db，重启不丢。
+  # ⚠️ ./data 是相对路径，会跟随"启动时的工作目录"漂移：
+  #   - IDEA 运行 CheckinApplication → 工作目录必须设为 backend（工程内的 .run/CheckinApplication.run.xml 已配好）
+  #   - mvn spring-boot:run        → 在 backend 目录下执行，工作目录天然就是 backend
+  #   - java -jar                  → 先 cd 到 backend 再执行
+  # 若工作目录变成工程根，会新建一个空库，看起来像"打卡记录全丢了"。
+  # 想彻底避开这个问题，可用 -DCHECKIN_DB=<绝对路径> 覆盖。
+  # AUTO_SERVER 让 IDEA 的 H2 控制台和运行中的应用可以同时连上。
+  datasource:
+    url: jdbc:h2:file:${CHECKIN_DB:./data/checkin};AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: update      # 本地开发够用；正式环境应换成 Flyway/Liquibase
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console      # http://localhost:8080/h2-console
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false   # LocalDate 输出 "2026-11-10" 而不是数组
+
+logging:
+  level:
+    com.checkin: debug

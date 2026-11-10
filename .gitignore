@@ -1,0 +1,22 @@
+# ---- Java / Maven ----
+backend/target/
+*.class
+*.jar
+!**/src/main/**/*.jar
+
+# 本地 H2 数据文件（个人打卡数据，不应提交）
+backend/data/
+data/
+
+# ---- Node / Vite ----
+frontend/node_modules/
+frontend/dist/
+npm-debug.log*
+yarn-error.log*
+
+# ---- IDE / OS ----
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
